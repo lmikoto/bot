@@ -2,10 +2,18 @@ FROM maven:3.5.0-jdk-8-alpine
 
 MAINTAINER lmikoto
 
-ADD . /tmp/app/
+ENV BUILD_HOME=/tmp/app
 
-RUN cd /tmp/app && mvn clean package -X &&\
-    mv /tmp/app/target/*.jar /var/lib/app.jar &&\
+WORKDIR $BUILD_HOME
+
+COPY pom.xml $BUILD_HOME
+
+RUN mvn dependency:go-offline -B
+
+COPY ./src $BUILD_HOME/src
+
+RUN mvn package -X &&\
+    mv $BUILD_HOME/target/*.jar /var/lib/app.jar &&\
     rm -rf /tmp/app
 
 ENV LANG="zh_CN.UTF-8"
