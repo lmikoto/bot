@@ -1,3 +1,4 @@
+mvn clean package
 docker build -t lmikoto/bot .
 docker push lmikoto/bot
 docker image prune -f

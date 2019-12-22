@@ -5,3 +5,10 @@ services:
     container_name: bot
     ports:
       - 8080:8080
+    networks:
+      - net
+    external_links:
+      - mysqldb
+networks:
+  net:
+    external: true
