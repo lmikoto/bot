@@ -1,27 +1,13 @@
-FROM maven:3.5.0-jdk-8-alpine
+FROM openjdk:8
 
 MAINTAINER lmikoto
 
-ENV BUILD_HOME=/tmp/app
+WORKDIR /var/lib/
 
-WORKDIR $BUILD_HOME
+COPY ./target/*.jar app.jar
 
-COPY pom.xml $BUILD_HOME
-
-RUN mvn dependency:go-offline -B
-
-COPY ./src $BUILD_HOME/src
-
-RUN mvn package -X &&\
-    mv $BUILD_HOME/target/*.jar /var/lib/app.jar &&\
-    rm -rf /tmp/app
-
-ENV LANG="zh_CN.UTF-8"
-
-#ENV spring.profiles.active="prod"
-
-VOLUME ["/logs"]
+#ENV spring.profiles.active=prod
 
 EXPOSE 8080
 
-ENTRYPOINT java -jar /var/lib/app.jar
+ENTRYPOINT java -jar app.jar --spring.profiles.active=prod
