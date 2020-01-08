@@ -9,8 +9,8 @@ services:
       - net
     external_links:
       - mysqldb
-    environment:
-      HOST: mysqldb
+    env_file:
+      - .env
 networks:
   net:
     external: true

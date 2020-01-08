@@ -2,3 +2,4 @@
 .idea/
 target/
 .m2/
+.env
