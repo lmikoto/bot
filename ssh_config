@@ -1,0 +1,5 @@
+Host miko
+HostName 47.102.216.171
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/key.pem
+User root
