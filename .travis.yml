@@ -18,4 +18,4 @@ addons:
   ssh_known_hosts:
     - 47.102.216.171
 after_success:
-  - ssh miko "cd /root/bot;git pull;docker-compose down; docker-compose up -d"
+  - ssh miko "cd /root/bot;git pull;docker-compose down;docker rmi lmikoto/bot; docker-compose up -d"
