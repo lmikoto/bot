@@ -10,7 +10,7 @@ services:
     external_links:
       - mysqldb
     environment:
-      HOST: 127.0.0.1
+      HOST: mysqldb
 networks:
   net:
     external: true
