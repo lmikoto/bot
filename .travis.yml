@@ -8,5 +8,5 @@ branches:
 script:
   - mvn clean package
   - docker build -t lmikoto/bot .
-  - docker login --username=$DOCKER_USER -p=$DOCKER_PASSWORD dockerhub
+  - docker login --username=$DOCKER_USER -p=$DOCKER_PASSWORD
   - docker push lmikoto/bot
