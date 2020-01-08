@@ -10,3 +10,10 @@ script:
   - docker build -t lmikoto/bot .
   - docker login --username=$DOCKER_USER -p=$DOCKER_PASSWORD
   - docker push lmikoto/bot
+before_install:
+  - openssl aes-256-cbc -K $encrypted_de6d150a673d_key -iv $encrypted_de6d150a673d_iv -in key.pem.enc -out ~/.ssh/key.pem -d
+addons:
+  ssh_known_hosts:
+    - 47.102.216.171
+after_success:
+  - ssh root@47.102.216.171 "/root/bot/deploy.sh"
