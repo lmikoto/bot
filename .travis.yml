@@ -1,0 +1,12 @@
+language: java
+sudo: true
+services:
+  - docker
+branches:
+  only:
+    - master
+script:
+  - mvn clean package
+  - docker build -t lmikoto/bot .
+  - docker login --username=$DOCKER_USER -p=$DOCKER_PASSWORD dockerhub
+  - docker push lmikoto/bot
