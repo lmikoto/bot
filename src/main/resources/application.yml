@@ -13,4 +13,4 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 kq:
-  msg: ${QQMESSAGE_PATH:http://localhost:5700}
+  msg: ${QQMESSAGE_PATH:http://localhost:5700/msg}
