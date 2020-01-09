@@ -6,15 +6,16 @@ import io.github.lmikoto.bot.context.QQMessageContext;
 import io.github.lmikoto.bot.interfaces.MessageSend;
 import io.github.lmikoto.bot.utils.QQMessageUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
 public class QQMessageSend implements MessageSend {
 
-    public static String SERVER_PATH = "http://localhost:5700";
 
-    public String SEND_MSG = SERVER_PATH + "/send_msg";
+    @Value("kq.msg")
+    private String SEND_MSG;
 
     @Override
     public void sendPrivate(String userId, String msg) {

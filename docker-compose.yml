@@ -9,6 +9,7 @@ services:
       - net
     external_links:
       - mysqldb
+      - kq
     env_file:
       - .env
 networks:
