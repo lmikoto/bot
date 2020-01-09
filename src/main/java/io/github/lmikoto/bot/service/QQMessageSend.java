@@ -14,12 +14,11 @@ import org.springframework.stereotype.Service;
 public class QQMessageSend implements MessageSend {
 
 
-    @Value("${kq.host}")
+    @Value("${kq.msg}")
     private String SEND_MSG;
 
     @Override
     public void sendPrivate(String userId, String msg) {
-        System.out.println(SEND_MSG);
         HttpUtils.get(SEND_MSG, ImmutableMap.of("user_id",userId,"message",msg));
     }
 
