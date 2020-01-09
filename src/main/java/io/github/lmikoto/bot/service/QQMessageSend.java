@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class QQMessageSend implements MessageSend {
 
 
-    @Value("kq.host")
+    @Value("${kq.host}")
     private String SEND_MSG;
 
     @Override
