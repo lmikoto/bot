@@ -2,7 +2,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: ${MYSQL_USER:root}
-    password: ${MYSQL_PASSWORD:root}
+    password: ${MYSQL_PASSWORD:anywhere}
     url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:3306/bot?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
   jpa:
     show-sql: true
@@ -14,3 +14,5 @@ spring:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 kq:
   msg: ${QQMESSAGE_PATH:http://localhost:5700/msg}
+xz:
+  key: ${XZ_KEY:}

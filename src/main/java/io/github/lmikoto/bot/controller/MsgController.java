@@ -20,7 +20,7 @@ public class MsgController {
     private MessageService messageService;
 
     @PostMapping
-    public Object getMs(@RequestBody MsgDto msg){
+    public Object getMsg(@RequestBody MsgDto msg){
         log.info("{}", JacksonUtils.toJson(msg));
         QQMessageContext.put(msg);
         messageService.dealMessage();
