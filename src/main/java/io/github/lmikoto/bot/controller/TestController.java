@@ -10,7 +10,6 @@ import io.github.lmikoto.bot.weather.WeatherTaskParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.PostConstruct;
 import java.util.Collections;
 
 @RestController
@@ -22,7 +21,7 @@ public class TestController {
     @Autowired
     private SchedulingService schedulingService;
 
-    @PostConstruct
+//    @PostConstruct
     public void test(){
         Schedule schedule = new Schedule();
         schedule.setCron("0/5 * * * * ? ");
@@ -37,6 +36,8 @@ public class TestController {
         schedule.setParam(JacksonUtils.toJson(weatherTaskParam));
         scheduleRepository.save(schedule);
 
-        schedulingService.refreshTasks();
+        scheduleRepository.delete(schedule);
+
+//        schedulingService.refreshTasks();
     }
 }

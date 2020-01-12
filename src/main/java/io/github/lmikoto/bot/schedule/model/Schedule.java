@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "schedule")
 @Data
-@SQLDelete(sql = "update schedule set deleted = 1 where id = ?")
+@SQLDelete(sql = "update schedule set deleted = 1 where id = ? and version = ?")
 @Where(clause = "deleted = 0")
 public class Schedule extends BaseEntity {
 
