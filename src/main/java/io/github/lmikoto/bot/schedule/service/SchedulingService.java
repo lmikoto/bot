@@ -1,8 +1,11 @@
 package io.github.lmikoto.bot.schedule.service;
 
 import com.google.common.collect.Maps;
+import io.github.lmikoto.JacksonUtils;
 import io.github.lmikoto.bot.common.exception.ServiceException;
 import io.github.lmikoto.bot.common.utils.SpringUtil;
+import io.github.lmikoto.bot.notice.NoticeService;
+import io.github.lmikoto.bot.schedule.dto.BaseTaskParam;
 import io.github.lmikoto.bot.schedule.model.Schedule;
 import io.github.lmikoto.bot.schedule.repository.ScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +28,9 @@ public class SchedulingService {
     @Autowired
     private ScheduleRepository scheduleRepository;
 
+    @Autowired
+    private NoticeService noticeService;
+
     private Map<Long, Future<?>> taskFutures = Maps.newConcurrentMap();
 
 
@@ -42,7 +48,13 @@ public class SchedulingService {
             throw new ServiceException("task.has.registered");
         }
         Runnable runnable = () -> {
-            task.excuse(schedule.getParam());
+            String noticeMsg =  task.getNoticeMsg(schedule.getParam());
+
+            if(Objects.nonNull(noticeMsg)){
+                BaseTaskParam baseTaskParam = JacksonUtils.fromJson(schedule.getParam(),BaseTaskParam.class);
+                noticeService.send(baseTaskParam.getNoticeChannel(),noticeMsg);
+            }
+
             if(Objects.equals(Boolean.FALSE,schedule.getIsRepeat())){
                 scheduleRepository.delete(schedule);
                 stopTask(schedule.getId());
@@ -61,12 +73,25 @@ public class SchedulingService {
         taskFutures.remove(taskId);
     }
 
+    public void stopAllTask(){
+        taskFutures.forEach((k,v) -> {
+            v.cancel(true);
+        });
+        taskFutures.clear();
+    }
+
+    public void refreshTasks(){
+        stopAllTask();
+        initTask();
+    }
+
 
     /**
      * 启动之后把所有的task注册进去
      */
     @PostConstruct
     public void initTask(){
-
+        Iterable<Schedule> list = scheduleRepository.findAll();
+        list.forEach(this::addTask);
     }
 }

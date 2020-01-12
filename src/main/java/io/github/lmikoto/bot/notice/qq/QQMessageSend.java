@@ -1,10 +1,9 @@
-package io.github.lmikoto.bot.service;
+package io.github.lmikoto.bot.notice.qq;
 
 import com.google.common.collect.ImmutableMap;
 import io.github.lmikoto.HttpUtils;
 import io.github.lmikoto.bot.context.QQMessageContext;
 import io.github.lmikoto.bot.interfaces.MessageSend;
-import io.github.lmikoto.bot.utils.QQMessageUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -17,6 +16,7 @@ public class QQMessageSend implements MessageSend {
     @Value("${kq.msg}")
     private String SEND_MSG;
 
+    // TODO 干掉这个类
     @Override
     public void sendPrivate(String userId, String msg) {
         HttpUtils.get(SEND_MSG, ImmutableMap.of("user_id",userId,"message",msg));

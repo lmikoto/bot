@@ -1,4 +1,4 @@
-package io.github.lmikoto.bot.utils;
+package io.github.lmikoto.bot.notice.qq;
 
 import io.github.lmikoto.bot.context.QQMessageContext;
 import io.github.lmikoto.bot.dto.MsgDto;

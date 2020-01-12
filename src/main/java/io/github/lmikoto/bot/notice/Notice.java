@@ -2,7 +2,7 @@ package io.github.lmikoto.bot.notice;
 
 public interface Notice {
 
-    NoticeChanelEnum noticeChanel();
+    ChanelEnum noticeChanel();
 
-    void notice(String chanelId);
+    void notice(String chanelId,String msg);
 }

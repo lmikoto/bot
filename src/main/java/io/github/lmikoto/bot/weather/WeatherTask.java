@@ -17,10 +17,11 @@ public class WeatherTask implements Task {
 
     public static final String XZ_API_PATH = "https://api.seniverse.com/v3/weather/now.json";
 
-
     @Override
-    public void excuse(String param) {
+    public String getNoticeMsg(String param) {
         WeatherTaskParam weatherTaskParam = JacksonUtils.fromJson(param,WeatherTaskParam.class);
+        XZResponse response = getWeather(weatherTaskParam.getLocation());
+        return JacksonUtils.toJson(response);
     }
 
     private XZResponse getWeather(String location){
