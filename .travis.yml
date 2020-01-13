@@ -6,7 +6,7 @@ branches:
   only:
     - master
 script:
-  - mvn clean package
+  - mvn clean package -Dmaven.test.skip=true
   - docker build -t lmikoto/bot .
   - docker login --username=$DOCKER_USER -p=$DOCKER_PASSWORD
   - docker push lmikoto/bot
