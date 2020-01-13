@@ -23,8 +23,10 @@ public class WeatherTask implements Task {
                 .append(daily.getText_night())
                 .append(" 最高温度: ")
                 .append(daily.getHigh())
+                .append("摄氏度")
                 .append(" 最低温度: ")
-                .append(daily.getLow());
+                .append(daily.getLow())
+                .append("摄氏度");
         return stringBuffer.toString();
     }
 
