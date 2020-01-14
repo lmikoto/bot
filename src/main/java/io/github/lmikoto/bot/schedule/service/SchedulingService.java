@@ -8,6 +8,7 @@ import io.github.lmikoto.bot.notice.NoticeService;
 import io.github.lmikoto.bot.schedule.dto.BaseTaskParam;
 import io.github.lmikoto.bot.schedule.model.Schedule;
 import io.github.lmikoto.bot.schedule.repository.ScheduleRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scheduling.config.TriggerTask;
@@ -20,6 +21,7 @@ import java.util.Objects;
 import java.util.concurrent.Future;
 
 @Service
+@Slf4j
 public class SchedulingService {
 
     @Autowired
@@ -48,6 +50,7 @@ public class SchedulingService {
             throw new ServiceException("task.has.registered");
         }
         Runnable runnable = () -> {
+            log.info("exec task {}",JacksonUtils.toJson(schedule));
             String noticeMsg =  task.getNoticeMsg(schedule.getParam());
 
             if(Objects.nonNull(noticeMsg)){
@@ -62,6 +65,7 @@ public class SchedulingService {
         };
         Future futureTask = taskScheduler.schedule(runnable,new CronTrigger(schedule.getCron()));
         taskFutures.put(schedule.getId(), futureTask);
+        log.info("add task {}",schedule);
     }
 
 
