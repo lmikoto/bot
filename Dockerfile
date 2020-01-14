@@ -6,8 +6,6 @@ WORKDIR /var/lib/
 
 COPY ./target/*.jar app.jar
 
-#ENV spring.profiles.active=prod
-
 RUN echo "Asia/Shanghai" > /etc/timezone
 
 EXPOSE 8080
