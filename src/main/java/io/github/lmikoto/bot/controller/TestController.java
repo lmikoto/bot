@@ -6,7 +6,7 @@ import io.github.lmikoto.bot.notice.ChanelEnum;
 import io.github.lmikoto.bot.schedule.model.Schedule;
 import io.github.lmikoto.bot.schedule.repository.ScheduleRepository;
 import io.github.lmikoto.bot.schedule.service.SchedulingService;
-import io.github.lmikoto.bot.weather.WeatherTaskParam;
+import io.github.lmikoto.bot.schedule.tasks.weather.WeatherTaskParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 

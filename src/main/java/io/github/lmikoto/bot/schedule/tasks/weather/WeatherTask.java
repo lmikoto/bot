@@ -1,4 +1,4 @@
-package io.github.lmikoto.bot.weather;
+package io.github.lmikoto.bot.schedule.tasks.weather;
 
 import io.github.lmikoto.JacksonUtils;
 import io.github.lmikoto.bot.api.xz.XZApi;

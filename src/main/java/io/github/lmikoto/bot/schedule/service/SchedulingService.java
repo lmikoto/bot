@@ -45,6 +45,11 @@ public class SchedulingService {
     }
 
     public void addTask(Schedule schedule){
+
+        if(Objects.isNull(schedule.getId())){
+            scheduleRepository.save(schedule);
+        }
+
         Task task = (Task) SpringUtil.getBean(schedule.getTaskBeanName());
         if(taskFutures.containsKey(schedule.getId())){
             throw new ServiceException("task.has.registered");
