@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CronDateUtils {
-    private static final String CRON_DATE_FORMAT = "ss mm HH dd MM ? yyyy";
+    private static final String CRON_DATE_FORMAT = "ss mm HH dd MM ?";
 
 
     public static String getCron(final Date date){
