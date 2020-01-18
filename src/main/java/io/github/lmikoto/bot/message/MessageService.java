@@ -1,4 +1,4 @@
-package io.github.lmikoto.bot.service;
+package io.github.lmikoto.bot.message;
 
 import io.github.lmikoto.bot.interfaces.MessageDeal;
 import lombok.extern.slf4j.Slf4j;

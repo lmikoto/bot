@@ -1,4 +1,4 @@
-package io.github.lmikoto.bot.service;
+package io.github.lmikoto.bot.message.deal;
 
 import io.github.lmikoto.bot.context.QQMessageContext;
 import io.github.lmikoto.bot.entity.Counter;

@@ -1,9 +1,10 @@
-package io.github.lmikoto.bot.service;
+package io.github.lmikoto.bot.message.deal;
 
 import io.github.lmikoto.JacksonUtils;
 import io.github.lmikoto.bot.common.utils.CronDateUtils;
 import io.github.lmikoto.bot.context.QQMessageContext;
 import io.github.lmikoto.bot.interfaces.MessageDeal;
+import io.github.lmikoto.bot.interfaces.MessageSend;
 import io.github.lmikoto.bot.notice.ChanelDto;
 import io.github.lmikoto.bot.notice.ChanelEnum;
 import io.github.lmikoto.bot.schedule.model.Schedule;
@@ -24,6 +25,9 @@ public class Remind implements MessageDeal {
 
     @Autowired
     private SchedulingService schedulingService;
+
+    @Autowired
+    private MessageSend messageSend;
 
     @Override
     public Boolean isMatch() {
@@ -47,6 +51,7 @@ public class Remind implements MessageDeal {
         schedule.setParam(JacksonUtils.toJson(remindTaskParam));
         schedule.setCron(getCron(msg[0]));
         schedulingService.addTask(schedule);
+        messageSend.reply("定时任务保存成功");
     }
 
     private Long getNextTimestamp(String time){

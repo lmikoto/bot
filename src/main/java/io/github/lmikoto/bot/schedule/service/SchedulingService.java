@@ -16,6 +16,7 @@ import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Future;
@@ -44,6 +45,7 @@ public class SchedulingService {
         taskFutures.put(taskId, futureTask);
     }
 
+    @Transactional
     public void addTask(Schedule schedule){
 
         if(Objects.isNull(schedule.getId())){
