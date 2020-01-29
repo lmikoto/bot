@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.Date;
+import java.util.Objects;
 
 @Service
 @Slf4j
@@ -58,10 +59,13 @@ public class Remind implements MessageDeal {
     }
 
     private Long getNextTimestamp(String time){
-        if(time.contains("分钟")){
-         String times[] = time.split("分钟");
-         return System.currentTimeMillis() + DigitUtil.parseDigits(times[0]) * 60 * 1000;
+        TimeEnums timeEnums = TimeEnums.get(time);
+        if(Objects.nonNull(timeEnums)){
+            String times[] = time.split(timeEnums.getDesc());
+            return System.currentTimeMillis() + DigitUtil.parseDigits(times[0]) * timeEnums.getMillisecond();
         }
+
+
         return System.currentTimeMillis() - 10000;
     }
 
