@@ -1,6 +1,7 @@
 package io.github.lmikoto.bot.message.deal.remind;
 
 import io.github.lmikoto.JacksonUtils;
+import io.github.lmikoto.bot.common.exception.ServiceException;
 import io.github.lmikoto.bot.common.utils.CronDateUtils;
 import io.github.lmikoto.bot.common.utils.DigitUtil;
 import io.github.lmikoto.bot.common.utils.TimeUtils;
@@ -59,14 +60,12 @@ public class Remind implements MessageDeal {
     }
 
     private Long getNextTimestamp(String time){
-        TimeEnums timeEnums = TimeEnums.get(time);
+        TimeEnums timeEnums = TimeEnums.contain(time);
         if(Objects.nonNull(timeEnums)){
             String times[] = time.split(timeEnums.getDesc());
             return System.currentTimeMillis() + DigitUtil.parseDigits(times[0]) * timeEnums.getMillisecond();
         }
-
-
-        return System.currentTimeMillis() - 10000;
+        throw new ServiceException("未找到对应的时间");
     }
 
     private String getCron(String time){

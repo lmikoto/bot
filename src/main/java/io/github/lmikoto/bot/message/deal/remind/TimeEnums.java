@@ -29,4 +29,13 @@ public enum  TimeEnums {
         }
         return null;
     }
+
+    public static TimeEnums contain(String time){
+        for(TimeEnums timeEnums: TimeEnums.values()){
+            if(time.contains(timeEnums.desc)){
+                return timeEnums;
+            }
+        }
+        return null;
+    }
 }
