@@ -1,9 +1,7 @@
 package io.github.lmikoto.bot.message.deal.remind;
 
 import io.github.lmikoto.JacksonUtils;
-import io.github.lmikoto.bot.common.exception.ServiceException;
 import io.github.lmikoto.bot.common.utils.CronDateUtils;
-import io.github.lmikoto.bot.common.utils.DigitUtil;
 import io.github.lmikoto.bot.common.utils.TimeUtils;
 import io.github.lmikoto.bot.interfaces.MessageDeal;
 import io.github.lmikoto.bot.interfaces.MessageSend;
@@ -18,8 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.Date;
-import java.util.Objects;
 
 @Service
 @Slf4j
@@ -53,23 +49,10 @@ public class Remind implements MessageDeal {
         chanel.setChanelEnum(ChanelEnum.QQ_PRIVATE);
         remindTaskParam.setNoticeChannel(Collections.singletonList(chanel));
         schedule.setParam(JacksonUtils.toJson(remindTaskParam));
-        String cron = getCron(msg[0]);
+        String cron = CronDateUtils.getCron(msg[0]);
         schedule.setCron(cron);
         Long taskId = schedulingService.addTask(schedule);
         messageSend.reply("定时任务保存成功。任务id: " + taskId  +" 下次提醒的时间是 " + TimeUtils.format(CronDateUtils.getNextExec(cron)));
-    }
-
-    private Long getNextTimestamp(String time){
-        TimeEnums timeEnums = TimeEnums.contain(time);
-        if(Objects.nonNull(timeEnums)){
-            String times[] = time.split(timeEnums.getDesc());
-            return System.currentTimeMillis() + DigitUtil.parseDigits(times[0]) * timeEnums.getMillisecond();
-        }
-        throw new ServiceException("未找到对应的时间");
-    }
-
-    private String getCron(String time){
-      return CronDateUtils.getCron(new Date(getNextTimestamp(time)));
     }
 
 }
