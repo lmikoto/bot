@@ -46,7 +46,7 @@ public class SchedulingService {
     }
 
     @Transactional
-    public void addTask(Schedule schedule){
+    public Long addTask(Schedule schedule){
 
         if(Objects.isNull(schedule.getId())){
             scheduleRepository.save(schedule);
@@ -73,6 +73,12 @@ public class SchedulingService {
         Future futureTask = taskScheduler.schedule(runnable,new CronTrigger(schedule.getCron()));
         taskFutures.put(schedule.getId(), futureTask);
         log.info("add task {}",schedule);
+        return schedule.getId();
+    }
+
+    public void removeTask(Long id){
+        scheduleRepository.deleteById(id);
+        stopTask(id);
     }
 
 

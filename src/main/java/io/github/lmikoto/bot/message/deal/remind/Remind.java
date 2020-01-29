@@ -55,8 +55,8 @@ public class Remind implements MessageDeal {
         schedule.setParam(JacksonUtils.toJson(remindTaskParam));
         String cron = getCron(msg[0]);
         schedule.setCron(cron);
-        schedulingService.addTask(schedule);
-        messageSend.reply("定时任务保存成功。下次提醒的时间是 " + TimeUtils.format(CronDateUtils.getNextExec(cron)));
+        Long taskId = schedulingService.addTask(schedule);
+        messageSend.reply("定时任务保存成功。任务id: " + taskId  +" 下次提醒的时间是 " + TimeUtils.format(CronDateUtils.getNextExec(cron)));
     }
 
     private Long getNextTimestamp(String time){

@@ -9,6 +9,8 @@ import java.util.Date;
 public class CronDateUtils {
     private static final String CRON_DATE_FORMAT = "ss mm HH dd MM ?";
 
+    private static final String CRON_DATE_FORMAT_EVERY_DAT = "ss mm HH ? MM ?";
+
 
     public static String getCron(final Date date){
         SimpleDateFormat sdf = new SimpleDateFormat(CRON_DATE_FORMAT);
@@ -18,6 +20,16 @@ public class CronDateUtils {
         }
         return formatTimeStr;
     }
+
+    public static String getCron(final Date date,String flog){
+        SimpleDateFormat sdf = new SimpleDateFormat(flog);
+        String formatTimeStr = "";
+        if (date != null) {
+            formatTimeStr = sdf.format(date);
+        }
+        return formatTimeStr;
+    }
+
 
     public static Date getNextExec(String cron){
         CronTrigger trigger = new CronTrigger(cron);
