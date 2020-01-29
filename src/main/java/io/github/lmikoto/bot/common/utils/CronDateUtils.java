@@ -50,6 +50,7 @@ public class CronDateUtils {
                     Calendar calendar = getInstance();
                     calendar.set(Calendar.HOUR_OF_DAY, DigitUtil.parseDigits(m.group(1)));
                     calendar.set(Calendar.MINUTE, DigitUtil.parseDigits(m.group(2)));
+                    calendar.set(Calendar.SECOND, 0);
                     date = calendar.getTime();
                 }
             }else{
@@ -59,6 +60,7 @@ public class CronDateUtils {
                     Calendar calendar = getInstance();
                     calendar.set(Calendar.HOUR_OF_DAY, DigitUtil.parseDigits(m.group(1)));
                     calendar.set(Calendar.MINUTE, DigitUtil.parseDigits(m.group(2)));
+                    calendar.set(Calendar.SECOND, 0);
                     if(calendar.compareTo(now) < 0) {
                         calendar.add(Calendar.HOUR,24);
                     }
