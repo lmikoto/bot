@@ -1,7 +1,8 @@
-package io.github.lmikoto.bot.message.deal;
+package io.github.lmikoto.bot.message.deal.remind;
 
 import io.github.lmikoto.JacksonUtils;
 import io.github.lmikoto.bot.common.utils.CronDateUtils;
+import io.github.lmikoto.bot.common.utils.DigitUtil;
 import io.github.lmikoto.bot.message.context.QQMessageContext;
 import io.github.lmikoto.bot.interfaces.MessageDeal;
 import io.github.lmikoto.bot.interfaces.MessageSend;
@@ -57,7 +58,7 @@ public class Remind implements MessageDeal {
     private Long getNextTimestamp(String time){
         if(time.contains("分钟")){
          String times[] = time.split("分钟");
-         return System.currentTimeMillis() + Long.valueOf(times[0]) * 60 * 1000;
+         return System.currentTimeMillis() + DigitUtil.parseDigits(times[0]) * 60 * 1000;
         }
         return System.currentTimeMillis() - 10000;
     }
