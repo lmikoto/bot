@@ -1,6 +1,6 @@
 package io.github.lmikoto.bot.message.deal;
 
-import io.github.lmikoto.bot.context.QQMessageContext;
+import io.github.lmikoto.bot.message.context.QQMessageContext;
 import io.github.lmikoto.bot.entity.Counter;
 import io.github.lmikoto.bot.interfaces.MessageDeal;
 import io.github.lmikoto.bot.interfaces.MessageSend;

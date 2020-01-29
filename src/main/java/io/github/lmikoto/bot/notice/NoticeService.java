@@ -23,15 +23,15 @@ public class NoticeService implements ApplicationContextAware {
         });
     }
 
-    public void send(List<ChanelDto> noticeChanelList, String msg){
+    public void send(List<Chanel> noticeChanelList, String msg){
         noticeChanelList.forEach(i->{
             send(i,msg);
         });
     }
 
-    public void send(ChanelDto chanelDto,String msg){
-        Notice notice = getNotice(chanelDto.getChanelEnum());
-        notice.notice(chanelDto.getId(),msg);
+    public void send(Chanel chanel, String msg){
+        Notice notice = getNotice(chanel.getChanelEnum());
+        notice.notice(chanel.getId(),msg);
     }
 
     public Notice getNotice(ChanelEnum chanelEnum){

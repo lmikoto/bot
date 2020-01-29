@@ -1,4 +1,4 @@
-package io.github.lmikoto.bot.dto;
+package io.github.lmikoto.bot.message.dto;
 
 import lombok.Data;
 

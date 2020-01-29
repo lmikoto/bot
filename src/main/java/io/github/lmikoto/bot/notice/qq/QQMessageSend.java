@@ -2,7 +2,7 @@ package io.github.lmikoto.bot.notice.qq;
 
 import com.google.common.collect.ImmutableMap;
 import io.github.lmikoto.HttpUtils;
-import io.github.lmikoto.bot.context.QQMessageContext;
+import io.github.lmikoto.bot.message.context.QQMessageContext;
 import io.github.lmikoto.bot.interfaces.MessageSend;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

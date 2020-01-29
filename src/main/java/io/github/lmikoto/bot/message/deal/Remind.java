@@ -2,10 +2,10 @@ package io.github.lmikoto.bot.message.deal;
 
 import io.github.lmikoto.JacksonUtils;
 import io.github.lmikoto.bot.common.utils.CronDateUtils;
-import io.github.lmikoto.bot.context.QQMessageContext;
+import io.github.lmikoto.bot.message.context.QQMessageContext;
 import io.github.lmikoto.bot.interfaces.MessageDeal;
 import io.github.lmikoto.bot.interfaces.MessageSend;
-import io.github.lmikoto.bot.notice.ChanelDto;
+import io.github.lmikoto.bot.notice.Chanel;
 import io.github.lmikoto.bot.notice.ChanelEnum;
 import io.github.lmikoto.bot.schedule.model.Schedule;
 import io.github.lmikoto.bot.schedule.service.SchedulingService;
@@ -44,10 +44,10 @@ public class Remind implements MessageDeal {
         schedule.setTaskBeanName("remindTask");
         RemindTaskParam remindTaskParam = new RemindTaskParam();
         remindTaskParam.setRemindContent(msg[1]);
-        ChanelDto chanelDto = new ChanelDto();
-        chanelDto.setId(QQMessageContext.get().getUser_id());
-        chanelDto.setChanelEnum(ChanelEnum.QQ_PRIVATE);
-        remindTaskParam.setNoticeChannel(Collections.singletonList(chanelDto));
+        Chanel chanel = new Chanel();
+        chanel.setId(QQMessageContext.get().getUser_id());
+        chanel.setChanelEnum(ChanelEnum.QQ_PRIVATE);
+        remindTaskParam.setNoticeChannel(Collections.singletonList(chanel));
         schedule.setParam(JacksonUtils.toJson(remindTaskParam));
         schedule.setCron(getCron(msg[0]));
         schedulingService.addTask(schedule);

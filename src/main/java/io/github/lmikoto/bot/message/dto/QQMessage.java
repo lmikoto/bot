@@ -1,9 +1,9 @@
-package io.github.lmikoto.bot.dto;
+package io.github.lmikoto.bot.message.dto;
 
 import lombok.Data;
 
 @Data
-public class MsgDto {
+public class QQMessage {
 
     private String post_type;
 
