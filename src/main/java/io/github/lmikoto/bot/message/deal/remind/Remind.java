@@ -55,8 +55,6 @@ public class Remind implements MessageDeal {
         schedule.setCron(cron);
         schedulingService.addTask(schedule);
         messageSend.reply("定时任务保存成功。下次提醒的时间是 " + TimeUtils.format(CronDateUtils.getNextExec(cron)));
-
-
     }
 
     private Long getNextTimestamp(String time){
