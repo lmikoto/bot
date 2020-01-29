@@ -40,7 +40,6 @@ public class CronDateUtils {
         Date date = null;
         SimpleDateFormat sdf = new SimpleDateFormat(CRON_DATE_FORMAT);
         Calendar now = Calendar.getInstance();
-        now.setTime(new Date());
         if(time.contains("点")){
             Pattern p = null;
             if(time.contains("每天")){
@@ -49,8 +48,7 @@ public class CronDateUtils {
                 Matcher m = p.matcher(time);
                 while (m.find()){
                     Calendar calendar = getInstance();
-                    calendar.setTime(new Date());
-                    calendar.set(Calendar.HOUR, DigitUtil.parseDigits(m.group(1)));
+                    calendar.set(Calendar.HOUR_OF_DAY, DigitUtil.parseDigits(m.group(1)));
                     calendar.set(Calendar.MINUTE, DigitUtil.parseDigits(m.group(2)));
                     date = calendar.getTime();
                 }
@@ -59,8 +57,7 @@ public class CronDateUtils {
                 Matcher m = p.matcher(time);
                 while (m.find()){
                     Calendar calendar = getInstance();
-                    calendar.setTime(new Date());
-                    calendar.set(Calendar.HOUR, DigitUtil.parseDigits(m.group(1)));
+                    calendar.set(Calendar.HOUR_OF_DAY, DigitUtil.parseDigits(m.group(1)));
                     calendar.set(Calendar.MINUTE, DigitUtil.parseDigits(m.group(2)));
                     if(calendar.compareTo(now) < 0) {
                         calendar.add(Calendar.HOUR,24);
