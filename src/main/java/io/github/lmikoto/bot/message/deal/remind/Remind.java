@@ -3,9 +3,10 @@ package io.github.lmikoto.bot.message.deal.remind;
 import io.github.lmikoto.JacksonUtils;
 import io.github.lmikoto.bot.common.utils.CronDateUtils;
 import io.github.lmikoto.bot.common.utils.DigitUtil;
-import io.github.lmikoto.bot.message.context.QQMessageContext;
+import io.github.lmikoto.bot.common.utils.TimeUtils;
 import io.github.lmikoto.bot.interfaces.MessageDeal;
 import io.github.lmikoto.bot.interfaces.MessageSend;
+import io.github.lmikoto.bot.message.context.QQMessageContext;
 import io.github.lmikoto.bot.notice.Chanel;
 import io.github.lmikoto.bot.notice.ChanelEnum;
 import io.github.lmikoto.bot.schedule.model.Schedule;
@@ -50,9 +51,12 @@ public class Remind implements MessageDeal {
         chanel.setChanelEnum(ChanelEnum.QQ_PRIVATE);
         remindTaskParam.setNoticeChannel(Collections.singletonList(chanel));
         schedule.setParam(JacksonUtils.toJson(remindTaskParam));
-        schedule.setCron(getCron(msg[0]));
+        String cron = getCron(msg[0]);
+        schedule.setCron(cron);
         schedulingService.addTask(schedule);
-        messageSend.reply("定时任务保存成功");
+        messageSend.reply("定时任务保存成功。下次提醒的时间是 " + TimeUtils.format(CronDateUtils.getNextExec(cron)));
+
+
     }
 
     private Long getNextTimestamp(String time){
