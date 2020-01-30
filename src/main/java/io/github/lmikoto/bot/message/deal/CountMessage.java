@@ -4,7 +4,7 @@ import io.github.lmikoto.bot.message.context.QQMessageContext;
 import io.github.lmikoto.bot.entity.Counter;
 import io.github.lmikoto.bot.interfaces.MessageDeal;
 import io.github.lmikoto.bot.interfaces.MessageSend;
-import io.github.lmikoto.bot.repository.CounterRepository;
+import io.github.lmikoto.bot.entity.CounterRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
