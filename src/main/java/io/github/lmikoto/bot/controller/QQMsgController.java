@@ -2,6 +2,7 @@ package io.github.lmikoto.bot.controller;
 
 import io.github.lmikoto.JacksonUtils;
 import io.github.lmikoto.bot.message.MessageService;
+import io.github.lmikoto.bot.message.MessageUtils;
 import io.github.lmikoto.bot.message.dto.BaseMessage;
 import io.github.lmikoto.bot.message.dto.QQMessage;
 import io.github.lmikoto.bot.notice.ChanelEnum;
@@ -32,6 +33,7 @@ public class QQMsgController {
             baseMessage.setChanelEnum(ChanelEnum.QQ_PRIVATE);
         }
         baseMessage.setMessage(JacksonUtils.toJson(msg));
+        MessageUtils.put(baseMessage);
         messageService.dealMessage();
     }
 }
