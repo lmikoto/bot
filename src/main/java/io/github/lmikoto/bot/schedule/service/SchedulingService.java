@@ -9,10 +9,8 @@ import io.github.lmikoto.bot.schedule.dto.BaseTaskParam;
 import io.github.lmikoto.bot.schedule.model.Schedule;
 import io.github.lmikoto.bot.schedule.repository.ScheduleRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scheduling.config.TriggerTask;
 import org.springframework.scheduling.support.CronTrigger;
@@ -25,7 +23,7 @@ import java.util.concurrent.Future;
 
 @Service
 @Slf4j
-public class SchedulingService implements ApplicationContextAware {
+public class SchedulingService implements CommandLineRunner {
 
     @Autowired
     private ThreadPoolTaskScheduler taskScheduler;
@@ -110,11 +108,8 @@ public class SchedulingService implements ApplicationContextAware {
         list.forEach(this::addTask);
     }
 
-    /**
-     * 启动之后把所有的task注册进去
-     */
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    public void run(String... args) throws Exception {
         initTask();
     }
 }

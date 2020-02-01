@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class QQMessageSend {
 
-
-    @Value("${kq.msg}")
     private static String SEND_MSG;
 
     @Autowired
