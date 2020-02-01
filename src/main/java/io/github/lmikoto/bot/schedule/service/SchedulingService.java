@@ -9,13 +9,15 @@ import io.github.lmikoto.bot.schedule.dto.BaseTaskParam;
 import io.github.lmikoto.bot.schedule.model.Schedule;
 import io.github.lmikoto.bot.schedule.repository.ScheduleRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scheduling.config.TriggerTask;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import java.util.Map;
 import java.util.Objects;
@@ -23,7 +25,7 @@ import java.util.concurrent.Future;
 
 @Service
 @Slf4j
-public class SchedulingService {
+public class SchedulingService implements ApplicationContextAware {
 
     @Autowired
     private ThreadPoolTaskScheduler taskScheduler;
@@ -103,12 +105,16 @@ public class SchedulingService {
     }
 
 
+    public void initTask(){
+        Iterable<Schedule> list = scheduleRepository.findAll();
+        list.forEach(this::addTask);
+    }
+
     /**
      * 启动之后把所有的task注册进去
      */
-    @PostConstruct
-    public void initTask(){
-//        Iterable<Schedule> list = scheduleRepository.findAll();
-//        list.forEach(this::addTask);
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        initTask();
     }
 }
