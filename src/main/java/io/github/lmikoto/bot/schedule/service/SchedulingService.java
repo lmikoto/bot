@@ -15,7 +15,6 @@ import org.springframework.scheduling.config.TriggerTask;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import java.util.Map;
 import java.util.Objects;
@@ -102,13 +101,9 @@ public class SchedulingService {
         initTask();
     }
 
-
-    /**
-     * 启动之后把所有的task注册进去
-     */
-    @PostConstruct
     public void initTask(){
         Iterable<Schedule> list = scheduleRepository.findAll();
         list.forEach(this::addTask);
     }
+
 }
