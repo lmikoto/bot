@@ -108,7 +108,7 @@ public class SchedulingService {
      */
     @PostConstruct
     public void initTask(){
-        Iterable<Schedule> list = scheduleRepository.findAll();
-        list.forEach(this::addTask);
+//        Iterable<Schedule> list = scheduleRepository.findAll();
+//        list.forEach(this::addTask);
     }
 }
