@@ -8,5 +8,7 @@ public class BaseMessage {
 
     private ChanelEnum chanelEnum;
 
-    private String cusMessage;
+    private String messageText;
+
+    private String message;
 }

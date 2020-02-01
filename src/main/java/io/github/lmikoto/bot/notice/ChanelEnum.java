@@ -5,5 +5,6 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public enum ChanelEnum {
     QQ_PRIVATE,
-    QQ_GROUP
+    QQ_GROUP,
+    TG_BOT
 }

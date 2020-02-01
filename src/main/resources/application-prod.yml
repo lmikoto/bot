@@ -16,3 +16,11 @@ kq:
   msg: ${QQMESSAGE_PATH:http://localhost:5700/msg}
 xz:
   key: ${XZ_KEY:}
+tg:
+  token: ${TG_TOKEN:}
+  id: ${TG_ID:}
+olami:
+  key: ${OLAMI_KEY:}
+  secret: ${OLAMI_SECRET:}
+server:
+  port: ${PORT:8080}
