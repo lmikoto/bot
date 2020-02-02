@@ -36,6 +36,10 @@ public class FuliDeal implements MessageDeal {
                 MessageUtils.replyImg(fuli.getUrl());
             }
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println("福利".equals("111") || " 福利".equals("111"));
 
     }
 }
