@@ -4,6 +4,8 @@ import ai.olami.ids.*;
 import ai.olami.nli.DescObject;
 import ai.olami.nli.NLIResult;
 import io.github.lmikoto.bot.api.olami.OlamiApi;
+import io.github.lmikoto.bot.api.tools.RollToolsApi;
+import io.github.lmikoto.bot.api.tools.Rubbish;
 import io.github.lmikoto.bot.interfaces.MessageDeal;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @Slf4j
@@ -69,6 +72,10 @@ public class MessageService  {
                 return handleSelectionType(descObject,arrayList);
             case "ds":
                 return descObject.getReplyAnswer() + "";
+            case "垃圾分类":
+                String name = result.getSemantics()[0].getSlots()[0].getValue();
+                Rubbish rubbish = RollToolsApi.getRubbishType(name);
+                return !Objects.isNull(rubbish) ? rubbish.getAim().getGoodsName() + "是" + rubbish.getAim().getGoodsType() : "还没有收录的类型";
             default:
                 return descObject.getReplyAnswer();
         }

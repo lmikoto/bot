@@ -22,5 +22,8 @@ tg:
 olami:
   key: ${OLAMI_KEY:}
   secret: ${OLAMI_SECRET:}
+rollTools:
+  app_id: ${ROLL_APP_ID:}
+  app_secret: ${ROLL_APP_SECRET:}
 server:
   port: ${PORT:8080}
