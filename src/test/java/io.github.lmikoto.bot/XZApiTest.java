@@ -23,4 +23,5 @@ public class XZApiTest {
         XZCurrentWeatherResponse response = XZApi.getCurrentWeather("东营");
         log.info("{}", JacksonUtils.toJson(response));
     }
+
 }

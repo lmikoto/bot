@@ -4,7 +4,7 @@ import io.github.lmikoto.JacksonUtils;
 import io.github.lmikoto.bot.message.dto.BaseMessage;
 import io.github.lmikoto.bot.message.dto.QQMessage;
 import io.github.lmikoto.bot.notice.ChanelEnum;
-import io.github.lmikoto.bot.notice.qq.QQMessageSend;
+import io.github.lmikoto.bot.api.qq.QQApi;
 
 import java.util.Objects;
 
@@ -38,7 +38,10 @@ public class MessageUtils {
                     TGBotUtils.sendMessage(msg);
                     break;
                 case QQ_PRIVATE:
-                    QQMessageSend.sendPrivate(getQQId(),msg);
+                    QQApi.sendPrivate(getQQId(),msg);
+                    break;
+                case QQ_GROUP:
+                    replyGroup(msg);
                     break;
                 default:
             }
@@ -49,4 +52,11 @@ public class MessageUtils {
         QQMessage qqMessage = JacksonUtils.fromJson(getMessage(),QQMessage.class);
         return qqMessage.getUser_id();
     }
+
+    public static void replyGroup(String msg){
+        QQMessage qqMessage = JacksonUtils.fromJson(getMessage(),QQMessage.class);
+        String reply =  String.format("[CQ:at,qq=%s] %s",qqMessage.getUser_id(),msg);
+        QQApi.sendGroup(qqMessage.getGroup_id(),reply);
+    }
+
 }

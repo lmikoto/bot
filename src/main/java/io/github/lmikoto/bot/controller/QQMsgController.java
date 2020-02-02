@@ -3,6 +3,7 @@ package io.github.lmikoto.bot.controller;
 import io.github.lmikoto.JacksonUtils;
 import io.github.lmikoto.bot.message.MessageService;
 import io.github.lmikoto.bot.message.MessageUtils;
+import io.github.lmikoto.bot.message.QQUtils;
 import io.github.lmikoto.bot.message.dto.BaseMessage;
 import io.github.lmikoto.bot.message.dto.QQMessage;
 import io.github.lmikoto.bot.notice.ChanelEnum;
@@ -26,12 +27,18 @@ public class QQMsgController {
     public void getMsg(@RequestBody QQMessage msg){
         log.info("qq--{}", JacksonUtils.toJson(msg));
         BaseMessage baseMessage = new BaseMessage();
-        baseMessage.setMessageText(msg.getRaw_message());
         if(QQMessageUtils.isGroup(msg)){
+            // 群消息判断是不是发给自己的
+            if(!QQUtils.isAtMe(msg.getRaw_message())){
+               return;
+            }
+            // 擦除@自己 使消息正确处理
+            msg.setRaw_message(QQUtils.removeAtMe(msg.getRaw_message()));
             baseMessage.setChanelEnum(ChanelEnum.QQ_GROUP);
         }else{
             baseMessage.setChanelEnum(ChanelEnum.QQ_PRIVATE);
         }
+        baseMessage.setMessageText(msg.getRaw_message());
         baseMessage.setMessage(JacksonUtils.toJson(msg));
         MessageUtils.put(baseMessage);
         messageService.dealMessage();

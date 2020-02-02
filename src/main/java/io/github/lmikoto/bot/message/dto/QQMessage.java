@@ -17,7 +17,7 @@ public class QQMessage {
 
     private String user_id;
 
-    private String message;
+//    private String message;
 
     private String raw_message;
 
