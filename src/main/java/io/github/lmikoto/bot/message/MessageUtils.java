@@ -57,6 +57,8 @@ public class MessageUtils {
                 case QQ_GROUP:
                     QQApi.sendImgGroup(getGroupId(),url);
                     break;
+                case TG_BOT:
+                    TGBotUtils.sendSticker(url);
                 default:
             }
         }

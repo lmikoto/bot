@@ -2,6 +2,7 @@ package io.github.lmikoto.bot.message;
 
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.request.SendMessage;
+import com.pengrad.telegrambot.request.SendSticker;
 import com.pengrad.telegrambot.response.SendResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +26,10 @@ public class TGBotUtils {
 
     public static SendResponse sendMessage(String msg){
         return bot.execute(new SendMessage(botId, msg));
+    }
+
+    public static SendResponse sendSticker(String url){
+        return bot.execute(new SendSticker(botId, url));
     }
 
 }
