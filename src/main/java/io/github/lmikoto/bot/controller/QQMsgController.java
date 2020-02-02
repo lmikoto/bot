@@ -1,5 +1,6 @@
 package io.github.lmikoto.bot.controller;
 
+import io.github.lmikoto.HttpUtils;
 import io.github.lmikoto.JacksonUtils;
 import io.github.lmikoto.bot.message.MessageService;
 import io.github.lmikoto.bot.message.MessageUtils;
@@ -42,5 +43,9 @@ public class QQMsgController {
         baseMessage.setMessage(JacksonUtils.toJson(msg));
         MessageUtils.put(baseMessage);
         messageService.dealMessage();
+
+
+        //做群转发用
+        HttpUtils.post("https://tg-qq-docker.herokuapp.com/",msg);
     }
 }
