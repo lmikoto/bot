@@ -13,7 +13,7 @@ import java.util.TimeZone;
 @EnableJpaRepositories(repositoryFactoryBeanClass = BaseRepositoryFactoryBean.class)
 public class App {
     public static void main(String[] args) {
-        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT+8"));
         SpringApplication.run(App.class,args);
     }
 }
