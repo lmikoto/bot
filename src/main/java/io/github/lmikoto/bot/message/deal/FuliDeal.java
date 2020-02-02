@@ -26,8 +26,8 @@ public class FuliDeal implements MessageDeal {
 
     @Override
     public void dealMsg() {
+        Long qty = fuliRepository.count();
         for(int i = 0; i< num; i++){
-            Long qty = fuliRepository.count();
             int idx = (int)(Math.random() * qty);
             Page<Fuli> questionPage = fuliRepository.findAll(PageRequest.of(idx, 1));
             Fuli fuli = null;
