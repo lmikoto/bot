@@ -29,14 +29,14 @@ public class TGMsgController {
 
     @PostMapping
     public void tgMsg(@RequestBody Object request){
-        log.info("tg--{}", JacksonUtils.toJson(request));
-        Update update = BotUtils.parseUpdate(JacksonUtils.toJson(request));
-        String text = update.message().text();
-        BaseMessage baseMessage = new BaseMessage();
-        baseMessage.setChanelEnum(ChanelEnum.TG_BOT);
-        baseMessage.setMessageText(text);
-        MessageUtils.put(baseMessage);
         executorService.execute(()->{
+            log.info("tg--{}", JacksonUtils.toJson(request));
+            Update update = BotUtils.parseUpdate(JacksonUtils.toJson(request));
+            String text = update.message().text();
+            BaseMessage baseMessage = new BaseMessage();
+            baseMessage.setChanelEnum(ChanelEnum.TG_BOT);
+            baseMessage.setMessageText(text);
+            MessageUtils.put(baseMessage);
             messageService.dealMessage();
         });
     }
