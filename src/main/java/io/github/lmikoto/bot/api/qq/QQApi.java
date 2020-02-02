@@ -57,4 +57,8 @@ public class QQApi {
         HttpUtils.get(HOST + "/send_msg", ImmutableMap.of("group_id",group,"message",img));
     }
 
+    public static void sendLike(String qq){
+        HttpUtils.get(HOST + "/send_like", ImmutableMap.of("user_id",qq,"times","10"));
+    }
+
 }

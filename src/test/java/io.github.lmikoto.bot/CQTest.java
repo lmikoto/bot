@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @Slf4j
 public class CQTest {
 
+    private String qq = "710801583";
+
     @Test
     public void CQ(){
         QQApi.sendPrivate("710801583","[CQ:face,id=184]");
@@ -25,11 +27,16 @@ public class CQTest {
 
     @Test
     public void img(){
-        QQApi.sendImg("710801583","http://img4.tuwandata.com/v3/thumb/jpg/ODYzZiwwLDAsOSwzLDEsLTEsTk9ORSwsLDkw/u/GLDM9lMIBglnFv7YKftLBG4MiepEyVRVs9IerVEKInwLKnryF4jhGDH1akN631uTR66Gmp0h5uE8DxePcqb9hGjeh2azhGK4HiTKUJO3JOQI.jpg");
+        QQApi.sendImg(qq,"http://img4.tuwandata.com/v3/thumb/jpg/ODYzZiwwLDAsOSwzLDEsLTEsTk9ORSwsLDkw/u/GLDM9lMIBglnFv7YKftLBG4MiepEyVRVs9IerVEKInwLKnryF4jhGDH1akN631uTR66Gmp0h5uE8DxePcqb9hGjeh2azhGK4HiTKUJO3JOQI.jpg");
     }
 
     @Test
     public void sendGroup(){
-        QQApi.sendImgGroup("783923381","http://img4.tuwandata.com/v3/thumb/jpg/ODYzZiwwLDAsOSwzLDEsLTEsTk9ORSwsLDkw/u/GLDM9lMIBglnFv7YKftLBG4MiepEyVRVs9IerVEKInwLKnryF4jhGDH1akN631uTR66Gmp0h5uE8DxePcqb9hGjeh2azhGK4HiTKUJO3JOQI.jpg");
+        QQApi.sendImgGroup(qq,"http://img4.tuwandata.com/v3/thumb/jpg/ODYzZiwwLDAsOSwzLDEsLTEsTk9ORSwsLDkw/u/GLDM9lMIBglnFv7YKftLBG4MiepEyVRVs9IerVEKInwLKnryF4jhGDH1akN631uTR66Gmp0h5uE8DxePcqb9hGjeh2azhGK4HiTKUJO3JOQI.jpg");
+    }
+
+    @Test
+    public void like(){
+        QQApi.sendLike(qq);
     }
 }
