@@ -7,7 +7,7 @@ import io.github.lmikoto.bot.interfaces.MessageDeal;
 import io.github.lmikoto.bot.message.MessageUtils;
 import io.github.lmikoto.bot.notice.Chanel;
 import io.github.lmikoto.bot.notice.ChanelEnum;
-import io.github.lmikoto.bot.schedule.model.Schedule;
+import io.github.lmikoto.bot.entity.Schedule;
 import io.github.lmikoto.bot.schedule.service.SchedulingService;
 import io.github.lmikoto.bot.schedule.tasks.remind.RemindTaskParam;
 import lombok.extern.slf4j.Slf4j;
