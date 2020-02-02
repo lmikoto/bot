@@ -47,5 +47,14 @@ public class QQApi {
        return JacksonUtils.fromJson(HttpUtils.get(HOST + "/get_login_info"), new TypeReference<QQResponse<UserInfo>>() {});
     }
 
+    public static void sendImg(String userId,String url){
+        String img = String.format("[CQ:image,file=%s]",url);
+        HttpUtils.post(HOST + "/send_msg", ImmutableMap.of("user_id",userId,"message",img));
+    }
+
+    public static void sendImgGroup(String group,String url){
+        String img = String.format("[CQ:image,file=%s]",url);
+        HttpUtils.get(HOST + "/send_msg", ImmutableMap.of("group_id",group,"message",img));
+    }
 
 }

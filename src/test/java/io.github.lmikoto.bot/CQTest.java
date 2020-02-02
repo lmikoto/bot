@@ -22,4 +22,14 @@ public class CQTest {
         UserInfo userInfo = response.getData();
         log.info(userInfo.getUser_id());
     }
+
+    @Test
+    public void img(){
+        QQApi.sendImg("710801583","http://img4.tuwandata.com/v3/thumb/jpg/ODYzZiwwLDAsOSwzLDEsLTEsTk9ORSwsLDkw/u/GLDM9lMIBglnFv7YKftLBG4MiepEyVRVs9IerVEKInwLKnryF4jhGDH1akN631uTR66Gmp0h5uE8DxePcqb9hGjeh2azhGK4HiTKUJO3JOQI.jpg");
+    }
+
+    @Test
+    public void sendGroup(){
+        QQApi.sendImgGroup("783923381","http://img4.tuwandata.com/v3/thumb/jpg/ODYzZiwwLDAsOSwzLDEsLTEsTk9ORSwsLDkw/u/GLDM9lMIBglnFv7YKftLBG4MiepEyVRVs9IerVEKInwLKnryF4jhGDH1akN631uTR66Gmp0h5uE8DxePcqb9hGjeh2azhGK4HiTKUJO3JOQI.jpg");
+    }
 }

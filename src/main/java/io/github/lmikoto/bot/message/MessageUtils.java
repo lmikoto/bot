@@ -48,9 +48,28 @@ public class MessageUtils {
         }
     }
 
+    public static void replyImg(String url){
+        if(Objects.nonNull(url)){
+            switch (getChanel()){
+                case QQ_PRIVATE:
+                    QQApi.sendImg(getQQId(),url);
+                    break;
+                case QQ_GROUP:
+                    QQApi.sendImgGroup(getGroupId(),url);
+                    break;
+                default:
+            }
+        }
+    }
+
     public static String getQQId(){
         QQMessage qqMessage = JacksonUtils.fromJson(getMessage(),QQMessage.class);
         return qqMessage.getUser_id();
+    }
+
+    public static String getGroupId(){
+        QQMessage qqMessage = JacksonUtils.fromJson(getMessage(),QQMessage.class);
+        return qqMessage.getGroup_id();
     }
 
     public static void replyGroup(String msg){
