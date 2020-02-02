@@ -68,10 +68,10 @@ public class MessageService  {
             case "selection":
                 return handleSelectionType(descObject,arrayList);
             case "ds":
+                return descObject.getReplyAnswer() + "";
+            default:
                 return descObject.getReplyAnswer();
-
         }
-        return "对不起你说的我还听不懂";
     }
 
     private String handleSelectionType(DescObject descObject,ArrayList arrayList){
