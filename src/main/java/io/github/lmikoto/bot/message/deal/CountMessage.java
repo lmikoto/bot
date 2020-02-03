@@ -61,6 +61,6 @@ public class CountMessage implements MessageDeal {
             result = result.add(c.getNum());
         }
 
-        MessageUtils.reply(" 保存成功 " + "类型: " + type + " 数量: " + count + " 备注: " + mark + " 目前总数: " + result.toPlainString());
+        MessageUtils.reply("保存成功 " + "类型: " + type + " 数量: " + count + " 备注: " + mark + " 目前总数: " + result.toPlainString());
     }
 }
