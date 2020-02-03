@@ -37,9 +37,4 @@ public class FuliDeal implements MessageDeal {
             }
         }
     }
-
-    public static void main(String[] args) {
-        System.out.println("福利".equals("111") || " 福利".equals("111"));
-
-    }
 }
